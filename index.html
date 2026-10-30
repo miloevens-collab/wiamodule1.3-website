@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1.3: Ergonomie en Functionele Bewegingen</title>
+    <style>
+        :root {
+            --primary-teal: #008094; /* Hoofdkleur leerwerkboek */
+            --accent-orange: #e67e22; /* Accentkleur oefenbundel */
+            --primary-light: #e6f2f4;
+            --text-dark: #2c3e50;
+            --bg-light: #f4f7f9;
+            --card-bg: #ffffff;
+            --danger-color: #e74c3c;
+            --success-color: #2ecc71;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-teal) 0%, #005b6a 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #cbd5e1;
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-teal);
+            border-bottom: 4px solid var(--primary-teal);
+            background-color: var(--primary-light);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary-teal);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .theme-orange h2 {
+            color: var(--accent-orange);
+        }
+
+        .intro-text {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--primary-teal);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        .theme-orange .intro-text {
+            border-left-color: var(--accent-orange);
+        }
+
+        /* Tabel Stijlen */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: var(--primary-teal);
+            color: white;
+            text-align: left;
+            padding: 14px 16px;
+            font-weight: 600;
+        }
+
+        .theme-orange th {
+            background-color: var(--accent-orange);
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* Quiz Stijlen */
+        .quiz-item {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--primary-teal);
+        }
+
+        .quiz-item.orange-border {
+            border-left-color: var(--accent-orange);
+        }
+
+        .quiz-item p {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        @media(min-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .btn-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-option:hover {
+            border-color: #cbd5e1;
+            background-color: #f1f5f9;
+        }
+
+        .btn-option.correct {
+            background-color: #d4edda;
+            border-color: var(--success-color);
+            color: #155724;
+            font-weight: bold;
+        }
+
+        .btn-option.incorrect {
+            background-color: #f8d7da;
+            border-color: var(--danger-color);
+            color: #721c24;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            font-weight: bold;
+            display: none;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <p>Middenschool H.Hart Bree — Wetenschap in Actie</p>
+        <h1>Module 1.3: Ergonomie &amp; Functionele Bewegingen</h1>
+        <p>Volledige begrippenlijst, antwoorden en interactieve oefenbundel</p>
+    </header>
+
+    <div class="container">
+        <!-- NAVIGATIE TABS -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'deel1')">Deel 1: Ergonomie &amp; Houding</button>
+            <button class="tab-btn" onclick="openTab(event, 'deel2')">Deel 2: Crossfit &amp; Hefboomwerking</button>
+            <button class="tab-btn" onclick="openTab(event, 'testjezelf')">✏️ Test Jezelf</button>
+        </div>
+
+        <!-- TAB 1: ERGONOMIE EN HOUDING -->
+        <div id="deel1" class="tab-content active">
+            <section>
+                <h2>1. Ergonomie en houding</h2>
+                <p class="intro-text">Bij elk begrip moet je drie dingen kunnen: uitleggen wat het betekent, het in een zin gebruiken en een concreet voorbeeld geven.</p>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">Begrip</th>
+                                <th>Officiële Betekenis &amp; Toepassing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ergonomie</strong></td>
+                                <td>De kennis over hoe je een taak en omgeving aan je lichaam aanpast. Zo werk en beweeg je veiliger.<br><span class="badge">Voorbeeld</span> Je bureaustoel op de juiste hoogte instellen.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Wervelkolom</strong></td>
+                                <td>Je ruggengraat. Ze bestaat uit 33 wervels en ondersteunt je bovenlichaam.<br><span class="badge">Voorbeeld</span> Recht opstaan helpt om je wervelkolom neutraal te houden.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tussenwervelschijf</strong></td>
+                                <td>Zachte schijf tussen twee wervels. Ze vangt schokken op en helpt je rug bewegen.<br><span class="badge">Voorbeeld</span> Tijdens het springen vangen de tussenwervelschijven de klappen op.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Houding</strong></td>
+                                <td>De manier waarop je je lichaam houdt bij zitten, staan of bewegen.<br><span class="badge">Voorbeeld</span> Een ingezakte zithouding kan na verloop van tijd rugpijn veroorzaken.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Functionele beweging</strong></td>
+                                <td>Een natuurlijke beweging waarbij meerdere spiergroepen tegelijk werken.<br><span class="badge">Voorbeeld</span> Een doos van de grond oprapen of pingpong spelen.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Basisbeweegpatroon</strong></td>
+                                <td>Een beweging die vaak terugkomt: hurken, buigen vanuit de heup, duwen, trekken, lopen, draaien of dragen.<br><span class="badge">Voorbeeld</span> Een zware deur openmaken (duwen/trekken).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 2: OEFENBUNDEL BEGRIPPEN -->
+        <div id="deel2" class="tab-content class theme-orange">
+            <section>
+                <h2>2. Crossfit en hefboomwerking</h2>
